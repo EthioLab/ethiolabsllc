@@ -80,14 +80,73 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(180deg, #87CEEB 0%, #B0E0E6 50%, #E0F6FF 100%);
             color: white;
             text-align: center;
             padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Rolling Hills */
+        .hero::before,
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: -10%;
+            width: 120%;
+            pointer-events: none;
+        }
+
+        /* Green hill - back layer */
+        .hero::before {
+            height: 35%;
+            background:
+                radial-gradient(ellipse 80% 100% at 20% 100%, #059669 70%, transparent 70%),
+                radial-gradient(ellipse 90% 100% at 50% 100%, #059669 70%, transparent 70%),
+                radial-gradient(ellipse 70% 100% at 80% 100%, #059669 70%, transparent 70%);
+            z-index: 1;
+        }
+
+        /* Yellow hill - middle layer */
+        .hero::after {
+            height: 28%;
+            background:
+                radial-gradient(ellipse 70% 100% at 30% 100%, #F59E0B 70%, transparent 70%),
+                radial-gradient(ellipse 85% 100% at 65% 100%, #F59E0B 70%, transparent 70%),
+                radial-gradient(ellipse 60% 100% at 90% 100%, #F59E0B 70%, transparent 70%);
+            z-index: 2;
+        }
+
+        /* Red hill - front layer (using additional element) */
+        .hills-red {
+            position: absolute;
+            bottom: 0;
+            left: -10%;
+            width: 120%;
+            height: 20%;
+            background:
+                radial-gradient(ellipse 75% 100% at 15% 100%, #DC2626 70%, transparent 70%),
+                radial-gradient(ellipse 80% 100% at 45% 100%, #DC2626 70%, transparent 70%),
+                radial-gradient(ellipse 65% 100% at 75% 100%, #DC2626 70%, transparent 70%),
+                radial-gradient(ellipse 70% 100% at 95% 100%, #DC2626 70%, transparent 70%);
+            z-index: 3;
+            pointer-events: none;
         }
 
         .hero-content {
             max-width: 800px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-tagline {
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
         }
 
         .hero h1 {
@@ -312,6 +371,7 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hills-red"></div>
         <div class="hero-content">
             <h1>EthioLabs LLC</h1>
             <p class="hero-tagline">Technology for Fairness, Justice & Decentralized Innovation</p>
